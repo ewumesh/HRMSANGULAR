@@ -1,0 +1,237 @@
+<div class="p-d-flex bg-blue">
+    <div class="p-mr-2">
+        <div class="row">
+            <div class="col-md-6 p-md-4">
+                <img style="height: 150px;" class="rounded-circle" src="../../../assets/img/user.png">
+            </div>
+        </div>
+    </div>
+    <div class="p-mr-2">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 style="padding-top: 60px !important;"> {{Employee.firstName}} {{Employee.lastName}} </h4>
+                <p class="pl-1">{{Employee.designation}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<p>
+    <a class='btn btn-default' (click)="onBack()">Back </a>
+</p>
+<p-tabView>
+    <p-tabPanel header="General Info">
+        <p-panel class="p-md-4" header="Basic Info">
+            <div class="p-gird">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            First Name : <b>{{Employee.firstName}}</b> 
+                        </div>
+                        <div class="col-md-12">
+                            Employee Id :<b> {{Employee.employeeIdNumber}} </b> 
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Last Name :<b> {{Employee.lastName}}</b>
+                        </div>
+                        <div class="col-md-12">
+                            Email :<b> {{Employee.email}}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+        <p-panel class="p-md-4" header="Work">
+
+            <div class="p-gird">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                           Department : <b>{{Employee.department}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                           Job Title : <b>{{Employee.designation}}</b> 
+                        </div>
+
+                        <div class="col-md-12 pb-3">
+                            Source of hire : <b>{{Employee.sourceOfHire}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                          Work phone : <b>{{Employee.workPhone}}</b> 
+                        </div>
+
+                    </div>
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Reporting To : <b>{{Employee.reporttoUser}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                           Date of hire : <b> {{Employee.dateOfHire | date:"MM/dd/yyyy"}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                           Employee IsActive :  <b> <p-checkbox [(ngModel)]="Employee.employeeStatus"
+                            name="isActive"
+                              id="isActive"
+                            [binary]="true"
+                            [disabled]="true"></p-checkbox></b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                            Employee Type : <b>{{Employee.employeeType}}</b> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+
+        <p-panel class="p-md-4" header="Personal Details">
+          <div class="p-gird">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                           Address :  <b>{{Employee.address}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                           State :  <b>{{Employee.state}}</b> 
+                        </div>
+
+                        <div class="col-md-12 pb-3">
+                            Date of birth : <b> {{Employee.dob | date:"MM/dd/yyyy"}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                            Nationality : <b>{{Employee.nationality}}</b> 
+                        </div>
+
+                    </div>
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Country :  <b>{{Employee.country}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                            Phone : <b>{{Employee.phone}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                            Gender :  <b>{{Employee.gender}}</b> 
+                        </div>
+                        <div class="col-md-12 pb-3">
+                            Marital Status : <b>{{Employee.maritalStatus}}</b> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+        <p-panel class="p-md-4" header="Work Experience">
+
+            <p-table [value]="Employee.workExperiences" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[5,10,15,20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="sn">S.N <p-sortIcon field="sn"></p-sortIcon></th>
+                        <th pSortableColumn="previousCompany">Previous Company <p-sortIcon field="previousCompany"></p-sortIcon></th>
+                        <th pSortableColumn="jobTitle">Job Title <p-sortIcon field="jobTitle"></p-sortIcon></th>
+                        <th pSortableColumn="jobDesc">Job Description <p-sortIcon field="jobDesc"></p-sortIcon></th>
+                        <th pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
+                        <th pSortableColumn="endDate">End Date <p-sortIcon field="intrest"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-EmployeeWE let-i="rowIndex">
+                    <tr >
+                        <td>{{i+1}}</td>
+                        <td>{{EmployeeWE.previousCompany}}</td>
+                        <td>{{EmployeeWE.jobTitle}}</td>
+                        <td>{{EmployeeWE.jobDescription}}</td>
+                        <td>{{EmployeeWE.startDate}}</td>
+                        <td>{{EmployeeWE.endDate}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+        </p-panel>
+
+        <p-panel class="p-md-4" header="Education">
+            <p-table [value]="Employee.educations" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[5,10,15,20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="sn">S.N <p-sortIcon field="sn"></p-sortIcon></th>
+                        <th pSortableColumn="schoolName">School Name <p-sortIcon field="schoolName"></p-sortIcon></th>
+                        <th pSortableColumn="degree">Degree <p-sortIcon field="degree"></p-sortIcon></th>
+                        <th pSortableColumn="field">Field <p-sortIcon field="field"></p-sortIcon></th>
+                        <th pSortableColumn="year">Year <p-sortIcon field="year"></p-sortIcon></th>
+                        <th pSortableColumn="intrest">Intrest <p-sortIcon field="intrest"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-EmployeeEdu let-i="rowIndex">
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{EmployeeEdu.schoolName}}</td>
+                        <td>{{EmployeeEdu.degress}}</td>
+                        <td>{{EmployeeEdu.fieldOfStudy}}</td>
+                        <td>{{EmployeeEdu.yearOfCompletion}}</td>
+                        <td>{{EmployeeEdu.interest}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+        </p-panel>
+
+        <p-panel class="p-md-4" header="Dependents">
+            <p-table [value]="Employee.dependents" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[5,10,15,20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="sn">S.N <p-sortIcon field="sn"></p-sortIcon></th>
+                        <th pSortableColumn="dependentName">Dependent Name <p-sortIcon field="dependentName"></p-sortIcon></th>
+                        <th pSortableColumn="gender">Gender <p-sortIcon field="gender"></p-sortIcon></th>
+                        <th pSortableColumn="relationship">Relationship <p-sortIcon field="relationship"></p-sortIcon></th>
+                        <th pSortableColumn="dob">Date of Birth <p-sortIcon field="dob"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-EmployeeDpn let-i ="rowIndex">
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{EmployeeDpn.dependentName}}</td>
+                        <td>{{EmployeeDpn.gender}}</td>
+                        <td>{{EmployeeDpn.relationship}}</td>
+                        <td>{{EmployeeDpn.dob}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+        </p-panel>
+    </p-tabPanel>
+    <p-tabPanel header="Job">
+        work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Leave">
+        work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Notes">
+        work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Performance">
+        work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Permissions">
+        work in process...
+    </p-tabPanel>
+</p-tabView>

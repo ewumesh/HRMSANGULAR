@@ -1,0 +1,183 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCompanyForm="ngForm"
+  (ngSubmit)="onSubmit(createCompanyForm.value)"
+>
+  <abp-modal-header
+    [title]="'CreateNewCompany' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'Details' | localize" class="pt-3 px-2">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="company.name"
+              #nameModel="ngModel"
+              #nameEl
+              pInputText
+            />
+            <abp-validation-summary
+              [control]="nameModel"
+              [controlEl]="nameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="Address">
+            {{ "Address" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" 
+            class="form-control"
+            name="address"
+            id="address"
+            required
+            minlength="2"
+            maxlength="32"
+            [(ngModel)]="company.address"
+            #addressModel="ngModel"
+            #addressEl
+            pInputText />
+           
+            <abp-validation-summary
+              [control]="addressModel"
+              [controlEl]="addressEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row ">
+          <label class="col-md-3 col-form-label" for="Country">
+            {{ "Country" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="Country"
+              id="Country"
+              [(ngModel)]="company.country"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="phone1">
+            {{ "Phone" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phone1"
+              id="phone1"
+              [(ngModel)]="company.phone1"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="phone2">
+            {{ "Mobile" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phone2"
+              id="phone2"
+              [(ngModel)]="company.phone2"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="phone2">
+            {{ "Mobile" | localize }}
+          </label>
+          <div class="col-md-9">
+            <!-- <p-fileUpload mode="basic" accept="image/*" maxFileSize="1000000" (onSelect)="onUpload($event)" >
+            </p-fileUpload> -->
+            <input type="file"  (onBeforeSend)="onBeforeSend($event)" (change)="onSelectFile($event)" >
+           
+            <!-- <input type="file" (change)="onUpload($event)" > -->
+            <!-- <p-fileUpload
+ 
+            name="myFile[]"
+            
+            maxFileSize="1000000000"
+            
+            customUpload="true"
+            
+            auto="auto"
+            
+            
+            (onUpload)="onUpload($event)"
+            
+            (onBeforeSend)="onBeforeSend($event)">
+            
+            <ng-template pTemplate="content">
+            
+              <ul *ngIf="uploadedFiles.length">
+            
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            
+              </ul>
+            
+              </ng-template>
+ 
+</p-fileUpload> -->
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="contactPerson">
+            {{ "Contact Person" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="contactPerson"
+              id="contactPerson"
+              [(ngModel)]="company.contactPerson"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="url">
+            {{ "URL" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="url"
+              id="url"
+              [(ngModel)]="company.url"
+              pInputText
+            />
+          </div>
+        </div>
+      </tab>
+    </tabset>
+    <button type="submit">Create Blog</button>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCompanyForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

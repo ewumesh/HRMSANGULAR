@@ -1,0 +1,369 @@
+<!-- <form
+  class="form-horizontal"
+  autocomplete="off"
+  #EditEmployeeForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditEmployee' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'Details' | localize" class="pt-3 px-2">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="firstName">
+            {{ "FirstName" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              id="firstName"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="Employee.firstName"
+              #firstNameModel="ngModel"
+              #firstNameEl
+              pInputText
+            />
+            <abp-validation-summary
+              [control]="firstNameModel"
+              [controlEl]="firstNameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="lastName">
+            {{ "lastName" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" 
+            class="form-control"
+            name="lastName"
+            id="lastName"
+            required
+            minlength="2"
+            maxlength="32"
+            [(ngModel)]="Employee.lastName"
+            #lastNameModel="ngModel"
+            #lastNameEl
+            pInputText />
+           
+            <abp-validation-summary
+              [control]="lastNameModel"
+              [controlEl]="lastNameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row ">
+          <label class="col-md-3 col-form-label" for="gender">
+            {{ "gender" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="gender"
+              id="gender"
+              [(ngModel)]="Employee.gender"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="dob">
+            {{ "dob" | localize }}
+          </label>
+          <div class="col-md-9">
+            <p-calendar
+            name="dob"
+            id="dob"
+            [(ngModel)]="Employee.dob"
+
+            > </p-calendar>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="maritalStatus">
+            {{ "maritalStatus" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="maritalStatus"
+              id="maritalStatus"
+              [(ngModel)]="Employee.maritalStatus"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="email">
+            {{ "email" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              id="email"
+              [(ngModel)]="Employee.email"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="phone">
+            {{ "phone" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phone"
+              id="phone"
+              [(ngModel)]="Employee.phone"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="permanentAddress">
+            {{ "permanentAddress" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="permanentAddress"
+              id="permanentAddress"
+              [(ngModel)]="Employee.permanentAddress"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="temporaryAddress">
+            {{ "temporaryAddress" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="temporaryAddress"
+              id="temporaryAddress"
+              [(ngModel)]="Employee.temporaryAddress"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeIdNumber">
+            {{ "employeeIdNumber" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="employeeIdNumber"
+              id="employeeIdNumber"
+              [(ngModel)]="Employee.employeeIdNumber"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="designation">
+            {{ "designation" | localize }}
+          </label>
+          <div class="col-md-9">
+            <p-dropdown class="col-md-12"
+            
+            id="designation"
+            [(ngModel)]="Employee.designation"
+            placeholder="Select a Designation" 
+             [options]= "dropitem"
+             name="designation"
+             [filter]="true" 
+             >
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="departmentId">
+            {{ "departmentId" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="departmentId"
+              id="departmentId"
+              [(ngModel)]="Employee.departmentId"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="supervisor">
+            {{ "supervisor" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="supervisor"
+              id="phsupervisorone"
+              [(ngModel)]="Employee.supervisor"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="joiningDate">
+            {{ "joiningDate" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="joiningDate"
+              id="joiningDate"
+              [(ngModel)]="Employee.joiningDate"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="leavingDate">
+            {{ "leavingDate" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="leavingDate"
+              id="leavingDate"
+              [(ngModel)]="Employee.leavingDate"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="basicSalary">
+            {{ "basicSalary" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="basicSalary"
+              id="basicSalary"
+              [(ngModel)]="Employee.basicSalary"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="unpaidLeavePD">
+            {{ "unpaidLeavePD" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="unpaidLeavePD"
+              id="unpaidLeavePD"
+              [(ngModel)]="Employee.unpaidLeavePD"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="benefitPackageTemplate">
+            {{ "benefitPackageTemplate" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="benefitPackageTemplate"
+              id="benefitPackageTemplate"
+              [(ngModel)]="Employee.benefitPackageTemplate"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="accountHolderName">
+            {{ "accountHolderName" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="accountHolderName"
+              id="accountHolderName"
+              [(ngModel)]="Employee.accountHolderName"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="bankName">
+            {{ "bankName" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="bankName"
+              id="bankName"
+              [(ngModel)]="Employee.bankName"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="accountNumber">
+            {{ "accountNumber" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="accountNumber"
+              id="accountNumber"
+              [(ngModel)]="Employee.accountNumber"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="swiftCode">
+            {{ "swiftCode" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="swiftCode"
+              id="swiftCode"
+              [(ngModel)]="Employee.swiftCode"
+              pInputText
+            />
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!EditEmployeeForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form> -->

@@ -1,0 +1,138 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #EditCompanyForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditCompany' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'Details' | localize" class="pt-3 px-2">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="company.name"
+              #nameModel="ngModel"
+              #nameEl
+            />
+            <abp-validation-summary
+              [control]="nameModel"
+              [controlEl]="nameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="Address">
+            {{ "Address" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="address"
+              id="address"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="company.address"
+              #addressModel="ngModel"
+              #addressEl
+            />
+            <abp-validation-summary
+              [control]="addressModel"
+              [controlEl]="addressEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label" for="Country">
+            {{ "Country" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="Country"
+              id="Country"
+              [(ngModel)]="company.country"
+            />
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label" for="phone1">
+            {{ "Phone" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phone1"
+              id="phone1"
+              [(ngModel)]="company.phone1"
+            />
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label" for="phone2">
+            {{ "Mobile" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phone2"
+              id="phone2"
+              [(ngModel)]="company.phone2"
+            />
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label" for="contactPerson">
+            {{ "Contact Person" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="contactPerson"
+              id="contactPerson"
+              [(ngModel)]="company.contactPerson"
+            />
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label" for="url">
+            {{ "URL" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="url"
+              id="url"
+              [(ngModel)]="company.url"
+            />
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!EditCompanyForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

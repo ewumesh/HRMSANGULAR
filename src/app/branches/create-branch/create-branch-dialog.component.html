@@ -1,0 +1,116 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCompanyForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewBranch' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="row p-col-12">
+          <div class="p-field p-col-4 p-md-4">
+              <label
+              for="name">BranchName</label>
+              <input
+              type="text"
+              class="form-control p-inputtext-sm"
+              name="name"
+              id="name"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="Branch.name"
+              pInputText
+              #nameModel="ngModel"
+              #nameEl
+            />
+            <abp-validation-summary
+              [control]="nameModel"
+              [controlEl]="nameEl"
+            ></abp-validation-summary>
+          </div>
+          <div class="p-field p-col-4 p-md-4">
+              <label for="code">BranchCode</label>
+              <input
+              type="text"
+              class="form-control"
+              name="code"
+              id="code"
+              pInputText
+              [(ngModel)]="Branch.code"
+            />
+          </div>
+          <div class="p-field p-col-4 p-md-4">
+            <label for="isActive">Status</label>
+            <p-checkbox
+            [(ngModel)]="Branch.isActive"
+            class="form-control"
+           name="isActive"
+           id="isActive"
+           label="IsActive : {{Branch.isActive}}"
+           [binary]="true"
+          >
+          </p-checkbox>
+        </div>
+        </div>
+          <div class="row p-col-12">
+          <div class="p-field p-col-6 p-md-6">
+              <label for="address">address</label>
+              <input 
+              type="text"
+              name="address"
+              id="address"
+              pInputTextarea 
+              [(ngModel)]="Branch.address"
+            />
+            </div>
+            <div class="p-field p-col-6 p-md-6">
+              <label for="company_Id">Company</label>
+              <p-dropdown class="col-md-12"
+              name="company_Id"
+              id="company_Id"
+              [(ngModel)]="Branch.company_Id"
+              placeholder="Select a Company" 
+              [options]= "dropitem"
+              [filter]="true" 
+              >
+              </p-dropdown>
+              </div>
+
+            </div>    
+            <div class="row p-col-12">
+              <div class="p-field p-col-6 p-md-6">
+                  <label for="contactNo">Contact No</label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  name="contactNo"
+                  id="contactNo"
+                  pInputText
+                  [(ngModel)]="Branch.contactNo"
+                />
+                </div>
+                <div class="p-field p-col-6 p-md-6">
+                  <label for="contactPerson">Contact Person</label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  name="contactPerson"
+                  id="contactPerson"
+                  pInputText
+                  [(ngModel)]="Branch.contactPerson"
+                />
+                  </div>
+    
+                </div>   
+        </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCompanyForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

@@ -1,0 +1,39 @@
+<form class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Create Dependent' | localize" (onCloseClick)="bsModalRef.hide()">
+    </abp-modal-header>
+    <div class="modal-body">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="row p-col-12">
+                <div class="p-field p-col-6 ">
+                    <label for="departmentName">Dependent Name</label>
+                    <input [(ngModel)]="dependent.dependentName" type="text" class="form-control p-inputtext-sm" name="dependentName" id="dependentName"
+                       placeholder="Enter Dependent Name" pInputText />
+                </div>
+                <div class="p-field p-col-6 ">
+                    <label for="gender">Gender</label>
+                    <!-- <p-dropdown [(ngModel)]="dependent.gender" [options]="genders"></p-dropdown> -->
+                    <input  [(ngModel)]="dependent.gender" type="text" class="form-control p-inputtext-sm" name="gender" id="gender"
+                       placeholder="Enter Gender" pInputText />
+                </div>
+            </div>
+            <div class="row p-col-12">
+                <div class="p-field p-col-6">
+                    <label for="relation">Relation</label>
+                    <input [(ngModel)]="dependent.relationship" placeholder="Enter Relationship"  type="text" class="form-control p-inputtext-sm" name="relationship" id="relationship"
+                        pInputText />
+                </div>
+                <div class="p-field p-col-6">
+                    <label for="dob">Date of birth</label>
+                    <p-calendar [(ngModel)]="dependent.dob" name="dob" placeholder="Select Date"  inputId="dob"></p-calendar>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+    <!-- <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary mr-1" (click)="save()">Save</button>
+            <button type="button" class="btn btn-danger ml-1" (click)="cancel()">Save</button>
+        </div>
+    </div> -->
+</form>

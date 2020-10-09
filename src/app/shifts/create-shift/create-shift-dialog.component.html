@@ -1,0 +1,65 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCompanyForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewShift' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="row p-col-12">
+        <div class="p-field p-col-4 p-md-4">
+            <label
+            for="name">Shift Name</label>
+            <input
+            type="text"
+            class="form-control p-inputtext-sm"
+            name="name"
+            id="name"
+            required
+            minlength="2"
+            maxlength="32"
+            [(ngModel)]="Shift.name"
+            pInputText
+            #nameModel="ngModel"
+            #nameEl
+          />
+          <abp-validation-summary
+            [control]="nameModel"
+            [controlEl]="nameEl"
+          ></abp-validation-summary>
+        </div>
+        <div class="p-field p-col-4 p-md-4">
+          <label for="isActive">Status</label>
+          <p-checkbox
+          [(ngModel)]="Shift.isActive"
+          class="form-control"
+         name="isActive"
+         id="isActive"
+         label="IsActive : {{Shift.isActive}}"
+         [binary]="true"
+        >
+        </p-checkbox>
+      </div>
+      </div>
+      <div class="row p-col-12">
+        <div class="p-field p-col-4 p-md-4">
+          <label for="code">StartTime</label>
+          <p-calendar [(ngModel)]="Shift.startTime" [timeOnly]="true" name="startTime" inputId="startTime"></p-calendar>
+      </div>
+       <div class="p-field p-col-4 p-md-4">
+          <label for="code">End Time</label>
+          <p-calendar [(ngModel)]="Shift.endTime" [timeOnly]="true" name="endTime" inputId="endTime"></p-calendar>
+      </div>
+        </div>
+      </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCompanyForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

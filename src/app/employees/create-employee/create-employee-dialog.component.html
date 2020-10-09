@@ -1,0 +1,225 @@
+<!-- <form class="form-horizontal" autocomplete="off" #createEmployeeForm="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewEmployee' | localize" (onCloseClick)="bsModalRefEmp.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'Details' | localize" class="pt-3 px-2">
+
+        <div class="p-grid">
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="firstName" class="p-col-fixed" style="width:150px" required>{{ "FirstName" | localize }} :
+              </label>
+              <div class="p-col">
+                <input class="form-control" placeholder="Enter First Name" name="firstName" id="firstName" type="text"
+                  required minlength="2" maxlength="32" [(ngModel)]="employee.firstName" #firstNameModel="ngModel"
+                  #firstNameEl pInputText />
+                <abp-validation-summary [control]="firstNameModel" [controlEl]="firstNameEl"></abp-validation-summary>
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="gender" class="p-col-fixed" style="width:150px">{{ "gender" | localize }} : </label>
+              <div class="p-col">
+                <input class="form-control" placeholder="Enter gender" name="gender" id="gender"
+                  [(ngModel)]="employee.gender" type="text" pInputText />
+              </div>
+            </div>
+          </div>
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="lastName" class="p-col-fixed" style="width:150px" required>{{ "lastName" | localize }} :
+              </label>
+              <div class="p-col">
+                <input class="form-control" placeholder="Enter last Name" name="lastName" id="lastName" type="text"
+                  required minlength="2" maxlength="32" [(ngModel)]="employee.lastName" #lastNameModel="ngModel"
+                  #lastNameEl pInputText />
+                <abp-validation-summary [control]="lastNameModel" [controlEl]="lastNameEl"></abp-validation-summary>
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="dob" class="p-col-fixed" style="width:150px">{{ "Date of birth" | localize }} : </label>
+              <div class="p-col">
+                <p-calendar placeholder="Select Date" [style]="{'width':'100%'}" name="dob" id="dob" [(ngModel)]="employee.dob"> </p-calendar>
+              </div>
+            </div>
+          </div>
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="maritalStatus" class="p-col-fixed" style="width:150px">{{ "maritalStatus" | localize }} :
+              </label>
+              <div class="p-col">
+                <input type="text" placeholder="Enter Marital status" class="form-control" name="maritalStatus" id="maritalStatus"
+                  [(ngModel)]="employee.maritalStatus" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="phone" class="p-col-fixed" style="width:150px">{{ "Phone" | localize }} : </label>
+              <div class="p-col">
+                <input placeholder="Enter Phone number" type="text" class="form-control" name="phone" id="phone" [(ngModel)]="employee.phone"
+                  pInputText /> </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="email" class="p-col-fixed" style="width:150px">{{ "email" | localize }} : </label>
+              <div class="p-col">
+                <input placeholder="Enter email address" type="text" class="form-control" name="email" id="email" [(ngModel)]="employee.email"
+                  pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="permanentAddress" class="p-col-fixed" style="width:150px">{{ "Permanent Address" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter permanent address" type="text" class="form-control" name="permanentAddress" id="permanentAddress"
+                  [(ngModel)]="employee.permanentAddress" pInputText /> </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="temporaryAddress" class="p-col-fixed" style="width:150px">{{ "Temporary Address" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter temporary address" type="text" class="form-control" name="temporaryAddress" id="temporaryAddress"
+                  [(ngModel)]="employee.temporaryAddress" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="designation" class="p-col-fixed" style="width:150px">{{ "designation" | localize }}
+                : </label>
+              <div class="p-col">
+                <p-dropdown class="col-md-12" name="designation" id="designation" [(ngModel)]="employee.designation"
+                  placeholder="Select a Designation" [options]="dropitem" [filter]="true">
+                </p-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="employeeIdNumber" class="p-col-fixed"
+                style="width:150px">{{ "Employee Id Number" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter employee Id" type="text" class="form-control" name="employeeIdNumber" id="employeeIdNumber"
+                  [(ngModel)]="employee.employeeIdNumber" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="departmentId" class="p-col-fixed" style="width:150px">{{ "departmentId" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter department Id" type="text" class="form-control" name="departmentId" id="departmentId"
+                  [(ngModel)]="employee.departmentId" pInputText />
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="supervisor" class="p-col-fixed" style="width:150px">{{ "supervisor" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter supervisor Name" type="text" class="form-control" name="supervisor" id="phsupervisorone"
+                  [(ngModel)]="employee.supervisor" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="leavingDate" class="p-col-fixed" style="width:150px">{{ "leavingDate" | localize }}
+                : </label>
+              <div class="p-col">
+                <p-calendar placeholder="select date" [style]="{'width':'100%'}" name="leavingDate" id="leavingDate"
+                  [(ngModel)]="employee.leavingDate"> </p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="joiningDate" class="p-col-fixed" style="width:150px">{{ "joiningDate" | localize }}
+                : </label>
+              <div class="p-col">
+                <p-calendar placeholder="select date" [style]="{'width':'100%'}" name="joiningDate" id="joiningDate"
+                  [(ngModel)]="employee.joiningDate"> </p-calendar>
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="basicSalary" class="p-col-fixed" style="width:150px">{{ "basicSalary" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter basic salary" type="text" class="form-control" name="basicSalary" id="basicSalary"
+                  [(ngModel)]="employee.basicSalary" pInputText />
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="unpaidLeavePD" class="p-col-fixed" style="width:150px">{{ "unpaidLeavePD" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter unpaid leave PD" type="text" class="form-control" name="unpaidLeavePD" id="unpaidLeavePD"
+                  [(ngModel)]="employee.unpaidLeavePD" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="accountHolderName" class="p-col-fixed"
+                style="width:150px">{{ "Account Holder Name" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter Accountholder name" type="text" class="form-control" name="accountHolderName" id="accountHolderName"
+                  [(ngModel)]="employee.accountHolderName" pInputText />
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="benefitPackageTemplate" class="p-col-fixed"
+                style="width:150px">{{ "Benefit Package Template" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter Benefit package template" type="text" class="form-control" name="benefitPackageTemplate" id="benefitPackageTemplate"
+                  [(ngModel)]="employee.benefitPackageTemplate" pInputText />
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="bankName" class="p-col-fixed" style="width:150px">{{ "Bank Name" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter Bank Name" type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="employee.bankName"
+                  pInputText />
+              </div>
+            </div>
+          </div>
+
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="accountNumber" class="p-col-fixed" style="width:150px">{{ "Account Number" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter account number" type="text" class="form-control" name="accountNumber" id="accountNumber"
+                  [(ngModel)]="employee.accountNumber" pInputText />
+              </div>
+            </div>
+
+          </div>
+          <div class="p-col-6">
+            <div class="p-field p-grid">
+              <label for="swiftCode" class="p-col-fixed" style="width:150px">{{ "Swift Code" | localize }}
+                : </label>
+              <div class="p-col">
+                <input placeholder="Enter swift code" type="text" class="form-control" name="swiftCode" id="swiftCode" [(ngModel)]="employee.swiftCode"
+                  pInputText />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createEmployeeForm.form.valid || saving"
+    (onCancelClick)="bsModalRefEmp.hide()"></abp-modal-footer>
+</form> -->

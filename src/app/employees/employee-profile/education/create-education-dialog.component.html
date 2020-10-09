@@ -1,0 +1,47 @@
+<form class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Create Education' | localize" (onCloseClick)="bsModalRef.hide()">
+    </abp-modal-header>
+    <div class="modal-body">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="row p-col-12">
+                <div class="p-field p-col-6 ">
+                    <label for="schoolName">School Name</label>
+                    <input [(ngModel)]="education.schoolName" type="text" class="form-control p-inputtext-sm" name="schoolName" id="schoolName"
+                       placeholder="Enter School/College Name" pInputText />
+                </div>
+                <div class="p-field p-col-6 ">
+                    <label for="degree">Degree</label>
+                    <!-- <p-dropdown [(ngModel)]="education.degress" placeholder="Enter Degree Name" name="degress" [options]="degrees"></p-dropdown> -->
+                    <input [(ngModel)]="education.degress" type="text" class="form-control p-inputtext-sm" name="degress" id="degress"
+                       placeholder="Enter Degree Name" pInputText />
+                </div>
+            </div>
+            <div class="row p-col-12">
+                <div class="p-field p-col-6">
+                    <label for="fieldOfStudy">Field(s) of study</label>
+                    <input [(ngModel)]="education.fieldOfStudy" type="text" class="form-control p-inputtext-sm" name="fieldOfStudy" id="fieldOfStudy"
+                      placeholder="Enter Field of Study"  pInputText />
+                </div>
+                <div class="p-field p-col-6">
+                    <label for="yearOfCompletion">Year of Completion</label>
+                    <!-- <p-calendar [(ngModel)]="education.yearOfCompletion" name="yearOfCompletion" placeholder="Select Date" inputId="yearOfCompletion"></p-calendar> -->
+                    <input [(ngModel)]="education.yearOfCompletion" type="text" class="form-control p-inputtext-sm" name="yearOfCompletion" id="yearOfCompletion"
+                       placeholder="Enter Year of Completition" pInputText />
+                </div>
+            </div>
+            <div class="row p-col-12">
+                <div class="p-field p-col-12">
+                    <label for="intrest">Intrest</label>
+                    <input [(ngModel)]="education.interest" type="text" class="form-control p-inputtext-sm" name="intrest" id="intrest" placeholder="Enter your Intrest" pInputText />
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+    <!-- <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary mr-1" (click)="save()">Save</button>
+            <button type="button" class="btn btn-danger ml-1" (click)="cancel()">Cancel</button>
+        </div>
+    </div> -->
+</form>
