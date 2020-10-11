@@ -9,7 +9,7 @@
     <div class="p-mr-2">
         <div class="row">
             <div class="col-md-12">
-                <h4 style="padding-top: 60px !important;">Umesh Thapa</h4>
+                <h4 style="padding-top: 60px !important;">{{employee.firstName}} {{employee.lastName}}</h4>
                 <p class="pl-1">Software Developer</p>
             </div>
         </div>
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="p-field p-grid">
-                                <label for="appUser" class="p-col-fixed" style="width:150px">User :
+                                <label for="appUser" class="p-col-fixed" style="width:150px">Do you want to create user?
                                 </label>
                                 <div class="p-col">
                                     <p-checkbox
@@ -497,5 +497,75 @@
     </p-tabPanel>
     <p-tabPanel header="Permissions">
         work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Bank Account Details">
+        <p-panel class="p-md-4" header="Bank Account Info">
+            <!-- <ng-template pTemplate="icons">
+                <button class="p-panel-header-icon">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+            </ng-template> -->
+            <div class="p-gird">
+                <form class="form-horizontal" autocomplete="off">
+                    <div class="p-grid">
+                        <div class="p-col-6">
+                            <div class="p-field p-grid">
+                                <label for="bankName" class="p-col-fixed" style="width:150px">Bank Name : </label>
+                                <div class="p-col">
+                                    <input name="bankName" style="width: 90%;"
+                                    [(ngModel)]="employee.bankName"  id="bankName" placeholder="Enter Bank Name" type="text" pInputText>
+                                </div>
+                            </div>
+                            <div class="p-field p-grid">
+                                <label for="accountHolderName" class="p-col-fixed" style="width:150px">Account Name : </label>
+                                <div class="p-col">
+                                    <input name="accountHolderName"
+                                    [(ngModel)]="employee.accountHolderName"   style="width: 90%;" id="accountHolderName" type="text" placeholder="Enter Bank Account Name"
+                                        pInputText>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <div class="p-field p-grid">
+                                <label for="accountNumber" class="p-col-fixed" style="width:150px">A/C Number : </label>
+                                <div class="p-col">
+                                    <input name="accountNumber" style="width: 90%;"
+                                    [(ngModel)]="employee.accountNumber"    id="accountNumber" type="text" placeholder="Enter Bank Account Number" pInputText>
+                                </div>
+                            </div>
+                            <div class="p-field p-grid">
+                                <label for="branchName" class="p-col-fixed" style="width:150px">Branch : </label>
+                                <div class="p-col">
+                                    <input name="branchName" style="width: 90%;" id="branchName"
+                                    [(ngModel)]="employee.branchName"    type="text" placeholder="Enter Account Branch" pInputText>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <div class="p-field p-grid">
+                                <label for="swiftCode" class="p-col-fixed" style="width:150px">Swift Code : </label>
+                                <div class="p-col">
+                                    <input name="swiftCode" style="width: 90%;"
+                                    [(ngModel)]="employee.swiftCode"   id="swiftCode" type="text" placeholder="Enter Bank Swift Code" pInputText>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <div class="p-field p-grid">
+                                <label for="accountType" class="p-col-fixed" style="width:150px">Account Type : </label>
+                                <div class="p-col">
+                                    <p-dropdown name="accountType"
+                                        [style]="{'width':'90%'}" placeholder="Select Account TYpe" [(ngModel)]="employee.accountType"  [options]="BankAccountType">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button (click)="saveChanges()" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </p-panel>
     </p-tabPanel>
 </p-tabView>

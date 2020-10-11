@@ -1871,6 +1871,62 @@ export class EmployeeServiceProxy {
      * @param body (optional) 
      * @return Success
      */
+    bankAccountInfo(body: BankAccountInfo | undefined): Observable<string> {
+        let url_ = this.baseUrl + "/api/services/app/Employee/BankAccountInfo";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processBankAccountInfo(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processBankAccountInfo(<any>response_);
+                } catch (e) {
+                    return <Observable<string>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<string>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processBankAccountInfo(response: HttpResponseBase): Observable<string> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<string>(<any>null);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
     work(body: WorkDto | undefined): Observable<string> {
         let url_ = this.baseUrl + "/api/services/app/Employee/Work";
         url_ = url_.replace(/[?&]$/, "");
@@ -1977,6 +2033,56 @@ export class EmployeeServiceProxy {
             }));
         }
         return _observableOf<string>(<any>null);
+    }
+
+    /**
+     * @param reportName (optional) 
+     * @return Success
+     */
+    reportGenerator(reportName: string | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Employee/ReportGenerator?";
+        if (reportName !== undefined && reportName !== null)
+            url_ += "reportName=" + encodeURIComponent("" + reportName) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processReportGenerator(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processReportGenerator(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<void>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processReportGenerator(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(<any>null);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(<any>null);
     }
 
     /**
@@ -3173,6 +3279,126 @@ export class GenericListServiceProxy {
             }));
         }
         return _observableOf<GetUpdateGenericListDto[]>(<any>null);
+    }
+}
+
+@Injectable()
+export class ReportServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @param reportName (optional) 
+     * @return Success
+     */
+    generateReport(reportName: string | null | undefined): Observable<string> {
+        let url_ = this.baseUrl + "/api/services/app/Report/GenerateReport?";
+        if (reportName !== undefined && reportName !== null)
+            url_ += "reportName=" + encodeURIComponent("" + reportName) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGenerateReport(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGenerateReport(<any>response_);
+                } catch (e) {
+                    return <Observable<string>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<string>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGenerateReport(response: HttpResponseBase): Observable<string> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<string>(<any>null);
+    }
+
+    /**
+     * @param reportType (optional) 
+     * @return Success
+     */
+    getRenderType(reportType: string | null | undefined): Observable<RenderType> {
+        let url_ = this.baseUrl + "/api/services/app/Report/GetRenderType?";
+        if (reportType !== undefined && reportType !== null)
+            url_ += "reportType=" + encodeURIComponent("" + reportType) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetRenderType(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetRenderType(<any>response_);
+                } catch (e) {
+                    return <Observable<RenderType>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<RenderType>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetRenderType(response: HttpResponseBase): Observable<RenderType> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<RenderType>(<any>null);
     }
 }
 
@@ -6388,6 +6614,8 @@ export class EmployeeDtos implements IEmployeeDtos {
     bankName: string | undefined;
     accountNumber: string | undefined;
     swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
     workExperiences: WorkExperienceDto[] | undefined;
     educations: EducationDto[] | undefined;
     dependents: DependentDto[] | undefined;
@@ -6437,6 +6665,8 @@ export class EmployeeDtos implements IEmployeeDtos {
             this.bankName = _data["bankName"];
             this.accountNumber = _data["accountNumber"];
             this.swiftCode = _data["swiftCode"];
+            this.branchName = _data["branchName"];
+            this.accountType = _data["accountType"];
             if (Array.isArray(_data["workExperiences"])) {
                 this.workExperiences = [] as any;
                 for (let item of _data["workExperiences"])
@@ -6498,6 +6728,8 @@ export class EmployeeDtos implements IEmployeeDtos {
         data["bankName"] = this.bankName;
         data["accountNumber"] = this.accountNumber;
         data["swiftCode"] = this.swiftCode;
+        data["branchName"] = this.branchName;
+        data["accountType"] = this.accountType;
         if (Array.isArray(this.workExperiences)) {
             data["workExperiences"] = [];
             for (let item of this.workExperiences)
@@ -6559,6 +6791,8 @@ export interface IEmployeeDtos {
     bankName: string | undefined;
     accountNumber: string | undefined;
     swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
     workExperiences: WorkExperienceDto[] | undefined;
     educations: EducationDto[] | undefined;
     dependents: DependentDto[] | undefined;
@@ -6652,6 +6886,8 @@ export class CreateEmployeeDto implements ICreateEmployeeDto {
     bankName: string | undefined;
     accountNumber: string | undefined;
     swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
     workExperiences: WorkExperienceDto[] | undefined;
     educations: EducationDto[] | undefined;
     dependents: DependentDto[] | undefined;
@@ -6698,6 +6934,8 @@ export class CreateEmployeeDto implements ICreateEmployeeDto {
             this.bankName = _data["bankName"];
             this.accountNumber = _data["accountNumber"];
             this.swiftCode = _data["swiftCode"];
+            this.branchName = _data["branchName"];
+            this.accountType = _data["accountType"];
             if (Array.isArray(_data["workExperiences"])) {
                 this.workExperiences = [] as any;
                 for (let item of _data["workExperiences"])
@@ -6756,6 +6994,8 @@ export class CreateEmployeeDto implements ICreateEmployeeDto {
         data["bankName"] = this.bankName;
         data["accountNumber"] = this.accountNumber;
         data["swiftCode"] = this.swiftCode;
+        data["branchName"] = this.branchName;
+        data["accountType"] = this.accountType;
         if (Array.isArray(this.workExperiences)) {
             data["workExperiences"] = [];
             for (let item of this.workExperiences)
@@ -6814,6 +7054,8 @@ export interface ICreateEmployeeDto {
     bankName: string | undefined;
     accountNumber: string | undefined;
     swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
     workExperiences: WorkExperienceDto[] | undefined;
     educations: EducationDto[] | undefined;
     dependents: DependentDto[] | undefined;
@@ -6876,6 +7118,73 @@ export interface IBasicInfoDto {
     lastName: string | undefined;
     email: string | undefined;
     employeeIdNumber: string | undefined;
+}
+
+export class BankAccountInfo implements IBankAccountInfo {
+    employeeId: number;
+    accountHolderName: string | undefined;
+    bankName: string | undefined;
+    accountNumber: string | undefined;
+    swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
+
+    constructor(data?: IBankAccountInfo) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.employeeId = _data["employeeId"];
+            this.accountHolderName = _data["accountHolderName"];
+            this.bankName = _data["bankName"];
+            this.accountNumber = _data["accountNumber"];
+            this.swiftCode = _data["swiftCode"];
+            this.branchName = _data["branchName"];
+            this.accountType = _data["accountType"];
+        }
+    }
+
+    static fromJS(data: any): BankAccountInfo {
+        data = typeof data === 'object' ? data : {};
+        let result = new BankAccountInfo();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["employeeId"] = this.employeeId;
+        data["accountHolderName"] = this.accountHolderName;
+        data["bankName"] = this.bankName;
+        data["accountNumber"] = this.accountNumber;
+        data["swiftCode"] = this.swiftCode;
+        data["branchName"] = this.branchName;
+        data["accountType"] = this.accountType;
+        return data; 
+    }
+
+    clone(): BankAccountInfo {
+        const json = this.toJSON();
+        let result = new BankAccountInfo();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IBankAccountInfo {
+    employeeId: number;
+    accountHolderName: string | undefined;
+    bankName: string | undefined;
+    accountNumber: string | undefined;
+    swiftCode: string | undefined;
+    branchName: string | undefined;
+    accountType: string | undefined;
 }
 
 export class WorkDto implements IWorkDto {
@@ -7726,6 +8035,17 @@ export class DropDownDto implements IDropDownDto {
 
 export interface IDropDownDto {
     keyword: string | undefined;
+}
+
+export enum RenderType {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
+    _4 = 4,
+    _5 = 5,
+    _6 = 6,
+    _7 = 7,
 }
 
 export class CreateRoleDto implements ICreateRoleDto {

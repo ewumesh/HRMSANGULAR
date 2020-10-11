@@ -134,7 +134,7 @@
                           Date of hire : <b> {{Employee.dateOfHire | date:"MM/dd/yyyy"}}</b> 
                         </div>
                         <div class="col-md-12 pb-3">
-                           Employee Status :  <b>     <p-checkbox [(ngModel)]="Employee.employeeStatus"
+                            IsActive :  <b>     <p-checkbox [(ngModel)]="Employee.employeeStatus"
                             name="isActive"
                               id="isActive"
                             [binary]="true"
@@ -424,7 +424,7 @@
                         <td>
                             <button (click)="editWorkExperience(c)" class="btn btn-primary mr-2" type="button"><i
                                     class="fas fa-pencil-alt"></i></button>
-                            <button (click)="deleteWorkExperience(c.id)" class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+                            <button (click)="deleteWorkExperience(c.id)" class="btn btn-danger" type="button"><i class="fas fa-times"></i></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -482,7 +482,7 @@
                     <td>
                         <button (click)="editEducation(c)" class="btn btn-primary mr-2" type="button"><i
                                 class="fas fa-pencil-alt"></i></button>
-                        <button (click)="deleteEducation(c.id)" class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+                        <button (click)="deleteEducation(c.id)" class="btn btn-danger" type="button"><i class="fas fa-times"></i></button>
                     </td>
                 </tr>
             </ng-template>
@@ -538,7 +538,7 @@
                     <td>
                         <button (click)="editDependent(c)" class="btn btn-primary mr-2" type="button"><i
                                 class="fas fa-pencil-alt"></i></button>
-                        <button (click)="deleteDependent(c.id)" class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+                        <button (click)="deleteDependent(c.id)" class="btn btn-danger" type="button"><i class="fas fa-times"></i></button>
                     </td>
                 </tr>
             </ng-template>
@@ -577,5 +577,115 @@
     </p-tabPanel>
     <p-tabPanel header="Permissions">
         work in process...
+    </p-tabPanel>
+    <p-tabPanel header="Bank Account Details">
+        <p-panel class="p-md-4" header="Bank Info" *ngIf="BankDetailInfo">
+            <ng-template pTemplate="icons">
+                <button class="p-panel-header-icon" (click)="editBankDetailInfo()">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+            </ng-template>
+
+            <div class="p-gird">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Bank Name : <b>{{Employee.bankName}}</b> 
+                        </div>
+                        <div class="col-md-12">
+                            Account Name :<b> {{Employee.accountHolderName}} </b> 
+                        </div>
+                       
+                    </div>
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Account Number : <b>{{Employee.accountNumber}}</b> 
+                        </div>
+                        <div class="col-md-12">
+                            Branch Name :<b> {{Employee.branchName}} </b> 
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                            Swift Code :<b> {{Employee.swiftCode}} </b> 
+                    </div>
+                    <div class="p-col-6">
+                            Account Type :<b> {{Employee.accountType}} </b> 
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+        <p-panel class="p-md-4" header="Edit Bank Info" *ngIf="!BankDetailInfo">
+            <ng-template pTemplate="icons">
+                <button class="p-panel-header-icon" (click)="editBankDetailInfo()">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+            </ng-template>
+
+            <div class="p-gird">
+                <form class="form-horizontal"   #BankDetailInfo="ngForm"
+                (ngSubmit)="UpdateBankDetailInfo()" autocomplete="off">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="p-field p-grid">
+                            <label for="bankName" class="p-col-fixed" style="width:150px">Bank Name : </label>
+                            <div class="p-col">
+                                <input name="bankName" style="width: 90%;"
+                                [(ngModel)]="Employee.bankName"  id="bankName" placeholder="Enter Bank Name" type="text" pInputText>
+                            </div>
+                        </div>
+                        <div class="p-field p-grid">
+                            <label for="accountHolderName" class="p-col-fixed" style="width:150px">Account Name : </label>
+                            <div class="p-col">
+                                <input name="accountHolderName"
+                                [(ngModel)]="Employee.accountHolderName"   style="width: 90%;" id="accountHolderName" type="text" placeholder="Enter Bank Account Name"
+                                    pInputText>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                        <div class="p-field p-grid">
+                            <label for="accountNumber" class="p-col-fixed" style="width:150px">A/C Number : </label>
+                            <div class="p-col">
+                                <input name="accountNumber" style="width: 90%;"
+                                [(ngModel)]="Employee.accountNumber"    id="accountNumber" type="text" placeholder="Enter Bank Account Number" pInputText>
+                            </div>
+                        </div>
+                        <div class="p-field p-grid">
+                            <label for="branchName" class="p-col-fixed" style="width:150px">Branch Name: </label>
+                            <div class="p-col">
+                                <input name="branchName" style="width: 90%;" id="branchName"
+                                [(ngModel)]="Employee.branchName"    type="text" placeholder="Enter Account Branch" pInputText>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                        <div class="p-field p-grid">
+                            <label for="swiftCode" class="p-col-fixed" style="width:150px">Swift Code : </label>
+                            <div class="p-col">
+                                <input name="swiftCode" style="width: 90%;"
+                                [(ngModel)]="Employee.swiftCode"   id="swiftCode" type="text" placeholder="Enter Bank Swift Code" pInputText>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                        <div class="p-field p-grid">
+                            <label for="accountType" class="p-col-fixed" style="width:150px">Account Type : </label>
+                            <div class="p-col">
+                                <p-dropdown name="accountType"
+                                    [style]="{'width':'90%'}" placeholder="Select Account Type" [(ngModel)]="Employee.accountType"  [options]="BankAccountType">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit" [cancelDisabled]="saving"  [Disabled]="!BankDetailInfo.form.valid || saving">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </p-panel>
     </p-tabPanel>
 </p-tabView>

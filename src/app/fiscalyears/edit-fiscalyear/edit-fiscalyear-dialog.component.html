@@ -1,6 +1,6 @@
 <form class="form-horizontal" autocomplete="off" #EditFiscalYearForm="ngForm" (ngSubmit)="save()">
   <abp-modal-header [title]="'EditFiscalYear' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
-  <div class="modal-body">
+  <!-- <div class="modal-body">
     <div class="p-fluid p-formgrid p-grid">
       <div class="row p-col-12">
         <div class="p-field p-col-4 p-md-4">
@@ -28,6 +28,59 @@
         <div class="p-field p-col-12 p-md-12">
           <label for="description">Description</label>
           <textarea type="text" name="description" id="description" pInputTextarea
+            [(ngModel)]="FiscalYear.description">
+            </textarea>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="p-grid m-3">
+    <div class="p-col-12">
+      <div class="p-field p-grid">
+        <label style="width:150px" for="name">FiscalYear Name :</label>
+        <div class="p-col">
+          <input style="width: 90%;" type="text" name="name" id="name" required minlength="2" maxlength="32"
+            [(ngModel)]="FiscalYear.name" pInputText #nameModel="ngModel" placeholder="Enter Fiscal Year Name"
+            #nameEl />
+          <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-12">
+      <div class="p-field p-grid">
+        <label for="startDate" class="p-col-fixed" style="width:150px">Start Date : </label>
+        <div class="p-col">
+          <p-calendar [(ngModel)]="FiscalYear.startDate" [style]="{'width':'90%'}" name="startDate" inputId="startDate"
+            placeholder="Select Date"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-12">
+      <div class="p-field p-grid">
+        <label for="endDate" class="p-col-fixed" style="width:150px">End Date : </label>
+        <div class="p-col">
+          <p-calendar [(ngModel)]="FiscalYear.endDate" [style]="{'width':'90%'}" name="endDate" inputId="endDate"
+            placeholder="Select Date"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-12">
+      <div class="p-field p-grid">
+        <label for="isCurrent" class="p-col-fixed" style="width:150px">Status : </label>
+        <div class="p-col">
+          <p-checkbox [(ngModel)]="FiscalYear.isCurrent" name="isCurrent" id="isCurrent"
+            label="isCurrent : {{FiscalYear.isCurrent}}" [binary]="true">
+          </p-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-col-12">
+      <div class="p-field p-grid">
+        <label for="description" class="p-col-fixed" style="width:150px">Description : </label>
+        <div class="p-col">
+          <textarea style="width: 90%;" type="text" name="description" id="description" pInputTextarea
             [(ngModel)]="FiscalYear.description">
             </textarea>
         </div>

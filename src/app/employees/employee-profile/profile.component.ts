@@ -8,7 +8,7 @@ import {
     EmployeeServiceProxy,
     EmployeeDtos,
     BasicInfoDto, DepartmentDtos, DesignationDtos, UserDto,
-    WorkDto,PersonalDetailsDto
+    WorkDto,PersonalDetailsDto, BankAccountInfo
   } from '@shared/service-proxies/service-proxies';
   import {SelectItem} from 'primeng/api';
 import { ThrowStmt } from '@angular/compiler';
@@ -28,6 +28,7 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
     BasicInfoData : BasicInfoDto = new BasicInfoDto();
     WorkInfoData : WorkDto = new WorkDto();
     PersonalDetailData :PersonalDetailsDto = new PersonalDetailsDto();
+    BankInfo : BankAccountInfo = new BankAccountInfo();
     DesignationDropD : SelectItem[] = [];   
     DepartmentDropD : SelectItem[] = [];
     UserDropD : SelectItem[] = [];
@@ -38,6 +39,7 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
     country : SelectItem;   
     gender : SelectItem;   
     maritalStatus : SelectItem;
+    accountType : SelectItem;
     experiences: any[] = [
     ];
     education: any[] = [
@@ -55,6 +57,7 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
     basicInfo: boolean = true;
     work: boolean = true;
     personalDetail: boolean = true;
+    BankDetailInfo: boolean = true;
 
     // Forms Dropdowns
     SourceOfHireDropD: any[] = [
@@ -77,6 +80,10 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
     MaratialStatusDropD: any[] = [
         { label: 'Unmarried', value: 'Unmarried'},
         { label: 'Married', value: 'Married' },
+    ]
+    BankAccountType: any[] = [
+        { label: 'Current', value: 'Current'},
+        { label: 'Saving', value: 'Saving' }
     ]
     // End Forms Dropdowns
 
@@ -138,6 +145,7 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
                this.sourceOfHire = this.SourceOfHireDropD.find(x=> x.value == result.sourceOfHire);
                this.country = this.CountryDropD.find(x=> x.value == result.country);
                this.gender = this.GenderDropD.find(x=> x.value == result.gender);
+               this.accountType = this.BankAccountType.find(x=> x.value == result.accountHolderName);
                this.maritalStatus = this.MaratialStatusDropD.find(x=> x.value == result.maritalStatus);
            });
     }
@@ -241,6 +249,28 @@ export class EmployeeProfileComponent extends AppComponentBase implements OnInit
     }
     editPersonalDetail() {
         this.personalDetail = !this.personalDetail;
+    }
+    editBankDetailInfo() {
+        this.BankDetailInfo = !this.BankDetailInfo;
+    }
+    UpdateBankDetailInfo()
+    {
+        debugger
+        this.BankInfo.employeeId = this.Employee.id;
+        this.BankInfo.bankName = this.Employee.bankName;
+        this.BankInfo.accountHolderName = this.Employee.accountHolderName;
+        this.BankInfo.accountNumber = this.Employee.accountNumber;
+        this.BankInfo.accountType = this.Employee.accountType;
+        this.BankInfo.branchName = this.Employee.branchName;
+        this.BankInfo.swiftCode = this.Employee.swiftCode;
+        this._EmployeeService.bankAccountInfo(this.BankInfo).subscribe((result)=>{
+          if(result == "success")
+          {
+             abp.notify.success('Successfully Updated');
+              this.editBankDetailInfo();
+              this.callonUpdate(this.id);
+          }
+        }); 
     }
     // End edit inline toggle
 

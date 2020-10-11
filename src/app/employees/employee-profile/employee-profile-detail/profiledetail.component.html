@@ -234,4 +234,35 @@
     <p-tabPanel header="Permissions">
         work in process...
     </p-tabPanel>
+    <p-tabPanel header="Bank Account Details">
+        <p-panel class="p-md-4" header="Basic Info">
+            <div class="p-gird">
+                <div class="p-grid">
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Bank Name : <b>{{Employee.bankName}}</b> 
+                        </div>
+                        <div class="col-md-12">
+                            Account Name :<b> {{Employee.accountHolderName}} </b> 
+                        </div>
+                       
+                    </div>
+                    <div class="p-col-6">
+                        <div class="col-md-12 pb-3">
+                            Account Number : <b>{{Employee.accountNumber}}</b> 
+                        </div>
+                        <div class="col-md-12">
+                            Branch Name :<b> {{Employee.branchName}} </b> 
+                        </div>
+                    </div>
+                    <div class="p-col-6">
+                            Swift Code :<b> {{Employee.swiftCode}} </b> 
+                    </div>
+                    <div class="p-col-6">
+                            Account Type :<b> {{Employee.accountType}} </b> 
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+        </p-tabPanel>
 </p-tabView>

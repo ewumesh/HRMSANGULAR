@@ -38,6 +38,10 @@ export class CreateEmployeeComponent extends AppComponentBase implements OnInit 
         { label: 'News', value:  'News' },
         { label: 'College', value: 'College' },
     ]
+    BankAccountType: any[] = [
+        { label: 'Current', value: 'Current'},
+        { label: 'Saving', value: 'Saving' }
+    ]
     CountryDropD: any[] = [
         { label: 'Nepal', value: 'Nepal'},
         { label: 'India', value: 'India' },
