@@ -75,6 +75,10 @@ import { EditShiftDialogComponent } from 'app/shifts/edit-shift/edit-shift-dialo
 import { FiscalYearsComponent } from 'app/fiscalyears/FiscalYearss.component';
 import { CreateFiscalYearDialogComponent } from 'app/fiscalyears/create-fiscalyear/create-fiscalyear-dialog.component';
 import { EditFiscalYearDialogComponent } from 'app/fiscalyears/edit-fiscalyear/edit-fiscalyear-dialog.component';
+
+// Leave
+import {LeaveComponent} from './leave/leave.component';
+import { CreateLeaveTypeComponent } from './leave/create-leave-type/create-leave-type.component';
 // layout
 import { HeaderComponent } from './layout/header.component';
 import { HeaderLeftNavbarComponent } from './layout/header-left-navbar.component';
@@ -139,6 +143,11 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
     FiscalYearsComponent,
     CreateFiscalYearDialogComponent,
     EditFiscalYearDialogComponent,
+
+    // leave
+    LeaveComponent,
+    CreateLeaveTypeComponent,
+
     // layout
     HeaderComponent,
     HeaderLeftNavbarComponent,
@@ -212,6 +221,9 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
     //fiscalyear
     CreateFiscalYearDialogComponent,
     EditFiscalYearDialogComponent,
+
+    // Leave
+    CreateLeaveTypeComponent
   ],
 })
 export class AppModule { }

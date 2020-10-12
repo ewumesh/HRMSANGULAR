@@ -1,0 +1,94 @@
+<form class="form-horizontal" autocomplete="off" #createCompanyForm="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="'CreateNewLeaveType' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+
+    <div class="p-grid m-3">
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="leaveName">Leave Name :</label>
+                <div class="p-col">
+                    <input style="width: 90%;" type="text" name="leaveName" id="leaveName" pInputText
+                        placeholder="Enter Leave Name" #nameEl />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="leaveCount">Leave Count :</label>
+                <div class="p-col">
+                    <input style="width: 90%;" type="text" name="leaveCount" id="leaveCount" pInputText
+                        placeholder="Enter Leave Count" #nameEl />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="leaveCode">Leave Code :</label>
+                <div class="p-col">
+                    <input style="width: 90%;" type="text" name="leaveCode" id="leaveCode" pInputText
+                        placeholder="Enter Leave Code" #nameEl />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="validFrom" class="p-col-fixed" style="width:150px">Valid From : </label>
+                <div class="p-col">
+                    <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
+                        placeholder="Select Date"></p-calendar>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="isLeaveCarryForward" class="p-col-fixed" style="width:150px">Is Leave Carry forward? :
+                </label>
+                <div class="p-col">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="disabled">Set how to manage employee leave balance during leave rest.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p-checkbox></p-checkbox> Allow carry forward
+                        </div>
+                        <div class="col-md-6">
+                            <p-checkbox></p-checkbox> Discard Leave Balance
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="leaveApplyToSalary" class="p-col-fixed" style="width:150px">Leave Applied to salary? :
+                </label>
+                <div class="p-col">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="disabled">Set how to manage employee salary with leave.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p-checkbox></p-checkbox> liable for salary deduction(LOP)
+                        </div>
+                        <div class="col-md-6">
+                            <p-checkbox></p-checkbox> No Salary Deduction
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="isActive" class="p-col-fixed" style="width:150px">IsActive : </label>
+                <div class="p-col">
+                    <div class="row">
+                        <p-checkbox></p-checkbox> Is Active
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

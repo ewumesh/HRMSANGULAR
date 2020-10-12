@@ -20,6 +20,7 @@ import { DesignationsComponent } from './designations/Designations.component';
 import { EmployeeProfileComponent } from './employees/employee-profile/profile.component';
 import { CreateEmployeeComponent } from './employees/employee-profile/create-employee.component';
 import { EmployeeProfileDetailComponent } from './employees/employee-profile/employee-profile-detail/profiledetail.component';
+import { LeaveComponent } from './leave/leave.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EmployeeProfileDetailComponent } from './employees/employee-profile/emp
                     { path: 'shifts', component: ShiftsComponent, data: { permission: 'Pages.Shifts' }, canActivate: [AppRouteGuard] },
                     { path: 'designations', component: DesignationsComponent, data: { permission: 'Pages.Designations' }, canActivate: [AppRouteGuard] },
                     { path: 'fiscalyears', component: FiscalYearsComponent, data: { permission: 'Pages.FiscalYears' }, canActivate: [AppRouteGuard] },
+                    { path: 'leave', component: LeaveComponent, data: { permission: '' }, canActivate: [AppRouteGuard] },
                     { path: 'branches', component: BranchesComponent, data: { permission: 'Pages.Branches' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent },

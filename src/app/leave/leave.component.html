@@ -1,0 +1,127 @@
+<!-- <div>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1>{{ "Leave Types" | localize }}</h1>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="javascript:;" class="btn bg-blue" (click)="createLeaveType()">
+                        <i class="fa fa-plus-square"></i>
+                        {{ "Create" | localize }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+
+
+<div [@routerTransition]>
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "Leave Types" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+            <a href="javascript:;" class="btn bg-blue" (click)="createLeaveType()">
+              <i class="fa fa-plus-square"></i>
+              {{ "Create" | localize }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content px-2">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap" aria-sort="ascending"  striped-rows="true">
+              <thead class="bg-light">
+                <tr>
+                  <th class="sorting">{{ "Leave Name" | localize }}</th>
+                  <th>{{ "Leave Count" | localize }}</th>
+                  <th>{{ "leave Code" | localize }}</th>
+                  <th>{{ "valid from" | localize }}</th>
+                  <th>{{ "Is Leave carry forward" | localize }}</th>
+                  <th>{{ "Leave applied to salary" | localize }}</th>
+                  <th>{{ "Isactive" | localize }}</th>
+                  <th style="width: 200px;">{{ "Actions" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let l of leaves
+                    | paginate
+                    : {
+                        id: 'server',
+                        itemsPerPage: 8,
+                        currentPage: 1,
+                        totalItems: 100
+                      }
+                    
+                  "
+                >
+                  <td> {{l.leaveName}} </td>
+                  <td> {{l.leaveCount }}</td>
+                  <td>{{ l.leaveCode }}</td>
+                  <td>{{ l.validFrom }}</td>
+                  <td>{{ l.isLeaveCarryForward }}</td>
+                  <td>{{ l.leaveAppliedToSalary }}</td>
+                 <td><p-checkbox [(ngModel)]="l.isActive"
+                name="isActive"
+                  id="isActive"
+                [binary]="true"
+                [disabled]="true"></p-checkbox>
+              </td> 
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-sm bg-secondary"
+                      (click)="editLeaveType(l)"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                      {{ "Edit" | localize }}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm bg-danger mx-2"
+                      (click)="deleteLeaveType(l)"
+                    >
+                      <i class="fas fa-trash"></i>
+                      {{ "Delete" | localize }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer bg-light border-top">
+            <div class="row">
+              <div class="col-sm-4 col-12 text-sm-left text-center">
+                <button class="btn btn-secondary" (click)="refresh()">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div>
+              <div class="col-sm-4 col-12 text-center">
+                <p class="mb-0 my-2">
+                  {{ "TotalRecordsCount" | localize: 12 }}
+                </p>
+              </div>
+              <div class="col-sm-4 col-12">
+                <div class="float-sm-right m-auto">
+                  <abp-pagination-controls
+                    id="server"
+                  >
+                  </abp-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
