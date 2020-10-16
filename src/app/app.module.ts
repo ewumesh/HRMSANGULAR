@@ -79,6 +79,8 @@ import { EditFiscalYearDialogComponent } from 'app/fiscalyears/edit-fiscalyear/e
 // Leave
 import {LeaveComponent} from './leave/leave.component';
 import { CreateLeaveTypeComponent } from './leave/create-leave-type/create-leave-type.component';
+import { LeaveRequestComponent } from './leave/apply-for-leave/leave-request.component';
+import { CreateLeaveRequestComponent } from './leave/apply-for-leave/create-leave-request/create-leave-request.component';
 // layout
 import { HeaderComponent } from './layout/header.component';
 import { HeaderLeftNavbarComponent } from './layout/header-left-navbar.component';
@@ -147,6 +149,8 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
     // leave
     LeaveComponent,
     CreateLeaveTypeComponent,
+    LeaveRequestComponent,
+    CreateLeaveRequestComponent,
 
     // layout
     HeaderComponent,
@@ -223,7 +227,8 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
     EditFiscalYearDialogComponent,
 
     // Leave
-    CreateLeaveTypeComponent
+    CreateLeaveTypeComponent,
+    CreateLeaveRequestComponent
   ],
 })
 export class AppModule { }

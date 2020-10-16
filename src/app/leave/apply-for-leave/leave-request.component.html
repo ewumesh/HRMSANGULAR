@@ -1,0 +1,85 @@
+<div>
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "My Leave request" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+            <a href="javascript:;" class="btn bg-blue" (click)="createLeaveRequest()">
+              <i class="fa fa-plus-square"></i>
+              {{ "Apply For Leave" | localize }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content px-2">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap" aria-sort="ascending"  striped-rows="true">
+              <thead class="bg-light">
+                <tr>
+                  <th class="sorting">{{ "Leave Type" | localize }}</th>
+                  <th>{{ "From Date" | localize }}</th>
+                  <th>{{ "To Date" | localize }}</th>
+                  <th>{{ "Applied For" | localize }}</th>
+                  <th>{{ "Status" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let l of leaveRequests
+                    | paginate
+                    : {
+                        id: 'server',
+                        itemsPerPage: 8,
+                        currentPage: 1,
+                        totalItems: 100
+                      }
+                    
+                  "
+                >
+                  <td> {{l.leaveType}} </td>
+                  <td> {{l.fromDate }}</td>
+                  <td>{{ l.toDate }}</td>
+                  <td>{{ l.appliedFor }}</td>
+                 <td><p-checkbox [(ngModel)]="l.status"
+                name="status"
+                  id="status"
+                [binary]="true"
+                [disabled]="true"></p-checkbox>
+              </td> 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer bg-light border-top">
+            <div class="row">
+              <div class="col-sm-4 col-12 text-sm-left text-center">
+                <button class="btn btn-secondary">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div>
+              <div class="col-sm-4 col-12 text-center">
+                <p class="mb-0 my-2">
+                  {{ "TotalRecordsCount"}}
+                </p>
+              </div>
+              <div class="col-sm-4 col-12">
+                <div class="float-sm-right m-auto">
+                  <abp-pagination-controls
+                    id="server"
+                  >
+                  </abp-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

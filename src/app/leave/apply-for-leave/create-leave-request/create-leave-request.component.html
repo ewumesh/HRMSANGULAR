@@ -1,0 +1,78 @@
+<form class="form-horizontal" autocomplete="off" #createCompanyForm="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Apply For Leave' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+
+    <div class="p-grid m-3">
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="leaveType">Leave Type :</label>
+                <div class="p-col">
+                    <input style="width: 90%;" type="text" name="leaveType" id="leaveType" pInputText
+                        placeholder="Select Leave Type" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="fromDate">From Date :</label>
+                <div class="p-col">
+                    <p-calendar [style]="{'width':'90%'}" name="fromDate" inputId="fromDate" placeholder="Select Date">
+                    </p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label style="width:150px" for="toDate">To Date :</label>
+                <div class="p-col">
+                    <p-calendar [style]="{'width':'90%'}" name="toDate" inputId="toDate" placeholder="Select Date">
+                    </p-calendar>
+
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="appliedLeave" class="p-col-fixed" style="width:150px">Applied Leave (days) : </label>
+                <div class="p-col">
+                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
+                        placeholder="Select Date"></p-calendar> -->
+                    <input style="width: 90%;" type="text" name="appliedLeave" id="appliedLeave" pInputText
+                        placeholder="2.00" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="actualLeave" class="p-col-fixed" style="width:150px">Actual Leave(days) : </label>
+                <div class="p-col">
+                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
+                        placeholder="Select Date"></p-calendar> -->
+                    <input style="width: 90%;" type="text" name="actualLeave" id="actualLeave" pInputText
+                        placeholder="2.00" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="leaveReason" class="p-col-fixed" style="width:150px"> Leave Reason : </label>
+                <div class="p-col">
+                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
+                        placeholder="Select Date"></p-calendar> -->
+                    <input style="width: 90%;" type="text" name="leaveReason" id="leaveReason" pInputText
+                        placeholder="Select Leave Reason" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="description" class="p-col-fixed" style="width:150px">Description : </label>
+                <div class="p-col">
+                    <textarea style="width: 90%;" name="description" pInputText></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
