@@ -6,8 +6,8 @@
             <div class="p-field p-grid">
                 <label style="width:150px" for="leaveType">Leave Type :</label>
                 <div class="p-col">
-                    <input style="width: 90%;" type="text" name="leaveType" id="leaveType" pInputText
-                        placeholder="Select Leave Type" />
+                    <p-dropdown [style]="{'width':'90%'}" name="leaveType" id="leaveType" [options]="leaveTypes"
+                        placeholder="Select Leave Type"></p-dropdown>
                 </div>
             </div>
         </div>
@@ -34,8 +34,6 @@
             <div class="p-field p-grid">
                 <label for="appliedLeave" class="p-col-fixed" style="width:150px">Applied Leave (days) : </label>
                 <div class="p-col">
-                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
-                        placeholder="Select Date"></p-calendar> -->
                     <input style="width: 90%;" type="text" name="appliedLeave" id="appliedLeave" pInputText
                         placeholder="2.00" />
                 </div>
@@ -43,23 +41,10 @@
         </div>
         <div class="p-col-12">
             <div class="p-field p-grid">
-                <label for="actualLeave" class="p-col-fixed" style="width:150px">Actual Leave(days) : </label>
+                <label for="remainingLeaveDay" class="p-col-fixed" style="width:150px">Remaining Leave(days) : </label>
                 <div class="p-col">
-                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
-                        placeholder="Select Date"></p-calendar> -->
-                    <input style="width: 90%;" type="text" name="actualLeave" id="actualLeave" pInputText
-                        placeholder="2.00" />
-                </div>
-            </div>
-        </div>
-        <div class="p-col-12">
-            <div class="p-field p-grid">
-                <label for="leaveReason" class="p-col-fixed" style="width:150px"> Leave Reason : </label>
-                <div class="p-col">
-                    <!-- <p-calendar [style]="{'width':'90%'}" name="validFrom" inputId="validFrom"
-                        placeholder="Select Date"></p-calendar> -->
-                    <input style="width: 90%;" type="text" name="leaveReason" id="leaveReason" pInputText
-                        placeholder="Select Leave Reason" />
+                    <input style="width: 90%;" type="text" name="remainingLeaveDay" id="remainingLeaveDay" pInputText
+                        placeholder="0.00" />
                 </div>
             </div>
         </div>
@@ -67,12 +52,32 @@
 
         <div class="p-col-12">
             <div class="p-field p-grid">
-                <label for="description" class="p-col-fixed" style="width:150px">Description : </label>
+                <label for="leaveReason" class="p-col-fixed" style="width:150px">Leave Reason : </label>
                 <div class="p-col">
-                    <textarea style="width: 90%;" name="description" pInputText></textarea>
+                    <textarea style="width: 90%;" name="leaveReason" pInputText></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12">
+            <div class="p-field p-grid">
+                <label for="file" class="p-col-fixed" style="width:150px">File Attatchment : </label>
+                <div class="p-col">
+                    <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+            multiple="multiple" accept="image/*" maxFileSize="1000000">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+    </p-fileUpload>
                 </div>
             </div>
         </div>
     </div>
-    <abp-modal-footer (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+    <div class="row m-2">
+        <div class="col-md-12 text-center mb-2">
+            <button class="btn btn-primary" type="submit">Apply For Leave</button>
+        </div>
+    </div>
 </form>

@@ -7,6 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class CreateLeaveRequestComponent extends AppComponentBase implements OnInit {
     leaveTypes: any[] =[];
+    uploadedFiles: any[] =[];
 
     constructor(
         injector: Injector,
@@ -18,6 +19,10 @@ export class CreateLeaveRequestComponent extends AppComponentBase implements OnI
     ngOnInit(): void { }
 
     save() {
+
+    }
+
+    onUpload(a) {
 
     }
 }
